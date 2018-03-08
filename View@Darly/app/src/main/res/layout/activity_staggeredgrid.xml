@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+    android:orientation="vertical">
+    <com.darly.dview.widget.header.TitleView
+        android:id="@+id/id_stagger_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <com.darly.darlyview.wedget.pinterest.MultiColumnListView
+        xmlns:pla="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/id_stagger_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        pla:plaColumnNumber="2"
+        pla:plaLandscapeColumnNumber="6"/>
+
+</LinearLayout>
