@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.darly.darlyview">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,6 +29,8 @@
         <activity android:name=".ui.swipecards.SwipeCardsActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.shapeloading.ShapeLoadingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.pocketsphinx.PocketSphinxActivity"
             android:screenOrientation="portrait"/>
     </application>
 

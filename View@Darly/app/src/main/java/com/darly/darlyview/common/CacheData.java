@@ -44,12 +44,19 @@ public class CacheData {
         waveSwipeRefresh.setClazz("com.darly.darlyview.ui.waveswiperefresh.WaveSwipeRefreshActivity");
         data.add(waveSwipeRefresh);
         RecyclerBean shapeloading = new RecyclerBean();
-        shapeloading.setId("3");
+        shapeloading.setId("4");
         shapeloading.setIcon(R.mipmap.ic_shapeloading);
         shapeloading.setTitle("shapeloading（加载动画）");
         shapeloading.setDesc("跳跃效果的加载动画，类似于58同城的加载效果。");
         shapeloading.setClazz("com.darly.darlyview.ui.shapeloading.ShapeLoadingActivity");
         data.add(shapeloading);
+        RecyclerBean pocketsphinx = new RecyclerBean();
+        pocketsphinx.setId("5");
+        pocketsphinx.setIcon(R.mipmap.ic_shapeloading);
+        pocketsphinx.setTitle("pocketsphinx（语音识别技术）");
+        pocketsphinx.setDesc("This is a demonstration for Pocketsphinx on Android");
+        pocketsphinx.setClazz("com.darly.darlyview.ui.pocketsphinx.PocketSphinxActivity");
+        data.add(pocketsphinx);
         return data;
     }
 
