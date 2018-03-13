@@ -32,6 +32,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.pocketsphinx.PocketSphinxActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".ui.grav.GravActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

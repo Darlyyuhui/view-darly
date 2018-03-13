@@ -57,6 +57,13 @@ public class CacheData {
         pocketsphinx.setDesc("This is a demonstration for Pocketsphinx on Android");
         pocketsphinx.setClazz("com.darly.darlyview.ui.pocketsphinx.PocketSphinxActivity");
         data.add(pocketsphinx);
+        RecyclerBean grav = new RecyclerBean();
+        grav.setId("6");
+        grav.setIcon(R.mipmap.ic_shapeloading);
+        grav.setTitle("grav（粒子动画效果）");
+        grav.setDesc("This is a demonstration for Pocketsphinx on Android");
+        grav.setClazz("com.darly.darlyview.ui.grav.GravActivity");
+        data.add(grav);
         return data;
     }
 

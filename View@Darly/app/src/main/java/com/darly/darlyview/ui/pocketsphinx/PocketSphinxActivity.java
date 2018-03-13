@@ -24,7 +24,6 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 import edu.cmu.pocketsphinx.Assets;
-import edu.cmu.pocketsphinx.Config;
 import edu.cmu.pocketsphinx.Hypothesis;
 import edu.cmu.pocketsphinx.RecognitionListener;
 import edu.cmu.pocketsphinx.SpeechRecognizer;
@@ -50,7 +49,7 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
     private static final String MENU_SEARCH = "menu";
 
     /* Keyword we are looking for to activate menu */
-    private static final String KEYPHRASE = "oh mighty computer";
+    private static final String KEYPHRASE = "computer";
 
     /* Used to handle permission request */
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
@@ -154,21 +153,20 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onBeginningOfSpeech() {
-        DLog.i("开始讲话。。。");
     }
 
     @Override
     public void onEndOfSpeech() {
-        DLog.i("讲话完毕。。。");
         if (!recognizer.getSearchName().equals(KWS_SEARCH))
             switchSearch(KWS_SEARCH);
     }
 
     @Override
     public void onPartialResult(Hypothesis hypothesis) {
-        DLog.i("分析。。。"+hypothesis);
-        if (hypothesis == null)
+        if (hypothesis == null) {
             return;
+        }
+        DLog.i("分析。。。"+hypothesis);
         String text = hypothesis.getHypstr();
         if (text.equals(KEYPHRASE))
             switchSearch(MENU_SEARCH);
@@ -184,9 +182,9 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onResult(Hypothesis hypothesis) {
-        DLog.i("结果。。。"+hypothesis);
         ((TextView) findViewById(R.id.result_text)).setText("");
         if (hypothesis != null) {
+            DLog.i("结果。。。"+hypothesis);
             String text = hypothesis.getHypstr();
             DLog.i(text);
         }
@@ -233,22 +231,21 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
         // of different kind and switch between them
 
         recognizer = SpeechRecognizerSetup.defaultSetup()
-                .setAcousticModel(new File(assetsDir, "en-us-ptm"))
-                .setDictionary(new File(assetsDir, "cmudict-en-us.dict"))
-
+                .setAcousticModel(new File(assetsDir, "ptm-us"))//设置声学模型的文件夹
+                .setDictionary(new File(assetsDir, "cmudict-en-us.dict"))//设置字典模型
                 .setRawLogDir(assetsDir) // To disable logging of raw audio comment out this call (takes a lot of space on the device)
 
                 .getRecognizer();
         recognizer.addListener(this);
 
-        /* In your application you might not need to add all those searches.
-          They are added here for demonstration. You can leave just one.
+        /** In your application you might not need to add all those searches.
+         * They are added here for demonstration. You can leave just one.
          */
 
-        // Create keyword-activation search.
+        // 创建短语监听
         recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
 
-        // Create grammar-based search for selection between demos
+        //创建命令文件监听
         File menuGrammar = new File(assetsDir, "menu.gram");
         recognizer.addGrammarSearch(MENU_SEARCH, menuGrammar);
 
@@ -263,7 +260,5 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
         // Phonetic search
         File phoneticModel = new File(assetsDir, "en-phone.dmp");
         recognizer.addAllphoneSearch(PHONE_SEARCH, phoneticModel);
-
-
     }
 }
