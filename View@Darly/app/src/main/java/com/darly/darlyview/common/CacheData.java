@@ -83,8 +83,16 @@ public class CacheData {
         lottie.setDesc("Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!\n" +
                 "\n" +
                 "For the first time, designers can create and ship beautiful animations without an engineer painstakingly recreating it by hand. They say a picture is worth 1,000 words so here are 13,000:");
-        lottie.setClazz("com.darly.darlyview.ui.lottie.LottieActivity");
+//        lottie.setClazz("com.darly.darlyview.ui.lottie.LottieActivity");
         data.add(lottie);
+
+        RecyclerBean mover = new RecyclerBean();
+        mover.setId("9");
+        mover.setIcon(R.mipmap.ic_shapeloading);
+        mover.setTitle("mover（控件动画）");
+        mover.setDesc("控件动画 https://github.com/daimajia/AndroidViewAnimations");
+        mover.setClazz("com.darly.darlyview.ui.mover.MoverActivity");
+        data.add(grav);
         return data;
     }
 

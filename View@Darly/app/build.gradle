@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.darly.darlyview"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 20
         versionCode 1
         versionName "1.0"
@@ -21,6 +22,7 @@ repositories {
     flatDir {
         dirs 'libs'
     }
+    mavenCentral()
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -33,4 +35,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile(name: 'pocketsphinx-android-5prealpha-release', ext: 'aar')
     compile project(':Asseter')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.nineoldandroids:library:2.4.0'
 }
