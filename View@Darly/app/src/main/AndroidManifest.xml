@@ -36,6 +36,8 @@
             android:theme="@style/AppTheme"
             android:name=".ui.grav.GravActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.rebound.ReboundActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

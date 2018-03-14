@@ -64,6 +64,27 @@ public class CacheData {
         grav.setDesc("This is a demonstration for Pocketsphinx on Android");
         grav.setClazz("com.darly.darlyview.ui.grav.GravActivity");
         data.add(grav);
+        RecyclerBean rebound = new RecyclerBean();
+        rebound.setId("7");
+        rebound.setIcon(R.mipmap.ic_shapeloading);
+        rebound.setTitle("rebound（图片图标点击波动效果）");
+        rebound.setDesc("Rebound is a java library that models spring dynamics. Rebound spring models can be used to create animations that feel natural by introducing real world physics to your application.\n" +
+                "\n" +
+                "Rebound is not a general purpose physics library; however, spring dynamics can be used to drive a wide variety of animations. The simplicity of Rebound makes it easy to integrate and use as a building block for creating more complex components like pagers, toggles, and scrollers.\n" +
+                "\n" +
+                "Rebound uses the same spring constants as Origami making it easy to convert Origami interaction mockups directly into your Android application.");
+        rebound.setClazz("com.darly.darlyview.ui.rebound.ReboundActivity");
+        data.add(rebound);
+
+        RecyclerBean lottie = new RecyclerBean();
+        lottie.setId("8");
+        lottie.setIcon(R.mipmap.ic_shapeloading);
+        lottie.setTitle("lottie（各种交互动画）");
+        lottie.setDesc("Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!\n" +
+                "\n" +
+                "For the first time, designers can create and ship beautiful animations without an engineer painstakingly recreating it by hand. They say a picture is worth 1,000 words so here are 13,000:");
+        lottie.setClazz("com.darly.darlyview.ui.lottie.LottieActivity");
+        data.add(lottie);
         return data;
     }
 
