@@ -12,6 +12,7 @@ import com.darly.darlyview.base.BaseActivity;
 import com.darly.darlyview.common.CacheData;
 import com.darly.darlyview.ui.adapter.RecyclerBean;
 import com.darly.darlyview.ui.adapter.RecyclerViewAdapter;
+import com.darly.darlyview.wedget.focusresize.FocusResizeScrollListener;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
 import com.darly.dview.widget.header.TitleView;
@@ -41,17 +42,16 @@ public class MainActivity extends BaseActivity implements RecyclerViewAdapter.On
 
     @Override
     protected void loadData() {
-        adapter = new RecyclerViewAdapter(this, CacheData.getRecyclerBeanData());
-        id_main_recyclerview.setAdapter(adapter);
-        //添加动画效果
-        DefaultItemAnimator animator = new DefaultItemAnimator();
-        animator.setRemoveDuration(2000);
-        id_main_recyclerview.setItemAnimator(animator);
-        //最后一个参数是反转布局一定是false,为true的时候为逆向显示，在聊天记录中可能会有使用
-        //这个东西在显示后才会加载，不会像ScollView一样一次性加载导致内存溢出
+        adapter = new RecyclerViewAdapter(this,(int) getResources().getDimension(R.dimen.custom_item_height), CacheData.getRecyclerBeanData(),id_main_recyclerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         LinearLayoutManager manager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-//        GridLayoutManager manager = new GridLayoutManager(this,2);
-        id_main_recyclerview.setLayoutManager(manager);
+        if (id_main_recyclerview != null) {
+            id_main_recyclerview.setLayoutManager(linearLayoutManager);
+            id_main_recyclerview.setHasFixedSize(true);
+            id_main_recyclerview.setAdapter(adapter);
+            id_main_recyclerview.addOnScrollListener(new FocusResizeScrollListener<>(adapter, linearLayoutManager));
+        }
+
     }
 
     @Override

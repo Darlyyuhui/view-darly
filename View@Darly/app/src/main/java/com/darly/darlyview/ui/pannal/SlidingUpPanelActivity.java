@@ -16,6 +16,7 @@ import com.darly.common.ToastApp;
 import com.darly.darlyview.R;
 import com.darly.darlyview.base.BaseActivity;
 import com.darly.darlyview.common.CacheData;
+import com.darly.darlyview.ui.adapter.CustomRecyclerAdapter;
 import com.darly.darlyview.ui.adapter.RecyclerBean;
 import com.darly.darlyview.ui.adapter.RecyclerViewAdapter;
 import com.darly.darlyview.wedget.slidinguppanel.SlidingUpPanelLayout;
@@ -42,11 +43,11 @@ public class SlidingUpPanelActivity extends BaseActivity implements View.OnClick
     @ViewsBinder(R.id.id_panel_recyclerview)
     RecyclerView id_panel_recyclerview;
 
-    RecyclerViewAdapter adapter;
+    CustomRecyclerAdapter adapter;
 
     @ViewsBinder(R.id.list)
     RecyclerView lv;
-    RecyclerViewAdapter lvadapter;
+    CustomRecyclerAdapter lvadapter;
     @ViewsBinder(R.id.name)
     TextView t;
 
@@ -64,7 +65,7 @@ public class SlidingUpPanelActivity extends BaseActivity implements View.OnClick
 
     @Override
     protected void loadData() {
-        adapter = new RecyclerViewAdapter(this, CacheData.getRecyclerBeanData());
+        adapter = new CustomRecyclerAdapter(this, CacheData.getRecyclerBeanData());
         id_panel_recyclerview.setAdapter(adapter);
         //添加动画效果
         DefaultItemAnimator animator = new DefaultItemAnimator();
@@ -76,7 +77,7 @@ public class SlidingUpPanelActivity extends BaseActivity implements View.OnClick
 //        GridLayoutManager manager = new GridLayoutManager(this,2);
         id_panel_recyclerview.setLayoutManager(manager);
 
-        lvadapter = new RecyclerViewAdapter(this, CacheData.getRecyclerBeanData());
+        lvadapter = new CustomRecyclerAdapter(this, CacheData.getRecyclerBeanData());
         lv.setAdapter(lvadapter);
         LinearLayoutManager lvmanager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         lv.setLayoutManager(lvmanager);
