@@ -40,6 +40,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.rebound.ReboundActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mover.MoverActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.mover.ExampleActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -27,9 +27,9 @@ package com.darly.darlyview.wedget.mover.specials;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
+import com.darly.darlyview.common.easing.Glider;
+import com.darly.darlyview.common.easing.Skill;
 import com.darly.darlyview.wedget.mover.BaseViewAnimator;
-import com.daimajia.easing.Glider;
-import com.daimajia.easing.Skill;
 
 public class HingeAnimator extends BaseViewAnimator {
     @Override
