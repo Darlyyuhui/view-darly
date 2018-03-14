@@ -59,7 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RecyclerBean bean = list.get(position);
         if (bean!=null){
             holder.icon.setImageResource(bean.getIcon());
-            holder.title.setText(bean.getTitle());
+            holder.title.setText(bean.getId()+bean.getTitle());
             holder.desc.setText(bean.getDesc());
         }
     }

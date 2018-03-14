@@ -52,21 +52,21 @@ public class CacheData {
         data.add(shapeloading);
         RecyclerBean pocketsphinx = new RecyclerBean();
         pocketsphinx.setId("5");
-        pocketsphinx.setIcon(R.mipmap.ic_shapeloading);
+        pocketsphinx.setIcon(R.mipmap.ic_pocketsphinx);
         pocketsphinx.setTitle("pocketsphinx（语音识别技术）");
         pocketsphinx.setDesc("This is a demonstration for Pocketsphinx on Android");
         pocketsphinx.setClazz("com.darly.darlyview.ui.pocketsphinx.PocketSphinxActivity");
         data.add(pocketsphinx);
         RecyclerBean grav = new RecyclerBean();
         grav.setId("6");
-        grav.setIcon(R.mipmap.ic_shapeloading);
+        grav.setIcon(R.mipmap.ic_grav);
         grav.setTitle("grav（粒子动画效果）");
         grav.setDesc("This is a demonstration for Pocketsphinx on Android");
         grav.setClazz("com.darly.darlyview.ui.grav.GravActivity");
         data.add(grav);
         RecyclerBean rebound = new RecyclerBean();
         rebound.setId("7");
-        rebound.setIcon(R.mipmap.ic_shapeloading);
+        rebound.setIcon(R.mipmap.ic_rebound);
         rebound.setTitle("rebound（图片图标点击波动效果）");
         rebound.setDesc("Rebound is a java library that models spring dynamics. Rebound spring models can be used to create animations that feel natural by introducing real world physics to your application.\n" +
                 "\n" +
@@ -78,21 +78,21 @@ public class CacheData {
 
         RecyclerBean lottie = new RecyclerBean();
         lottie.setId("8");
-        lottie.setIcon(R.mipmap.ic_shapeloading);
+        lottie.setIcon(R.mipmap.ic_lottie);
         lottie.setTitle("lottie（各种交互动画）");
         lottie.setDesc("Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!\n" +
                 "\n" +
                 "For the first time, designers can create and ship beautiful animations without an engineer painstakingly recreating it by hand. They say a picture is worth 1,000 words so here are 13,000:");
-//        lottie.setClazz("com.darly.darlyview.ui.lottie.LottieActivity");
+        lottie.setClazz("com.darly.darlyview.ui.lottie.LottieActivity?");
         data.add(lottie);
 
         RecyclerBean mover = new RecyclerBean();
         mover.setId("9");
-        mover.setIcon(R.mipmap.ic_shapeloading);
+        mover.setIcon(R.mipmap.ic_mover);
         mover.setTitle("mover（控件动画）");
         mover.setDesc("控件动画 https://github.com/daimajia/AndroidViewAnimations");
         mover.setClazz("com.darly.darlyview.ui.mover.MoverActivity");
-        data.add(grav);
+        data.add(mover);
         return data;
     }
 

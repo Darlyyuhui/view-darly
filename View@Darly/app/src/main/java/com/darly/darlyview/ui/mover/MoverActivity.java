@@ -20,7 +20,7 @@ import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
 import com.darly.dview.widget.header.TitleView;
 
-/**
+/**控件动画
  * @author Darly/张宇辉/2018/3/14 11:37
  * @version 1.0/com.darly.darlyview.ui.mover
  */

@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 import com.darly.darlyview.R;
 import com.darly.darlyview.base.BaseActivity;
+import com.darly.darlyview.ui.adapter.RecyclerBean;
 import com.darly.darlyview.wedget.rebound.BaseSpringSystem;
 import com.darly.darlyview.wedget.rebound.Spring;
 import com.darly.darlyview.wedget.rebound.SpringListener;
@@ -14,14 +15,19 @@ import com.darly.darlyview.wedget.rebound.SpringSystem;
 import com.darly.darlyview.wedget.rebound.SpringUtil;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
+import com.darly.dview.widget.header.TitleView;
 
 /**图片图标点击波动效果
  * @author Darly/张宇辉/2018/3/14 9:04
  * @version 1.0/com.darly.darlyview.ui.rebound
  */
 @ContentBinder(R.layout.activity_rebound)
-public class ReboundActivity extends BaseActivity implements SpringListener {
+public class ReboundActivity extends BaseActivity implements SpringListener,View.OnClickListener {
     private final BaseSpringSystem mSpringSystem = SpringSystem.create();
+
+    @ViewsBinder(R.id.id_rebound_title)
+    TitleView id_rebound_title;
+
     @ViewsBinder(R.id.root_view)
     private FrameLayout mRootView;
     private Spring mScaleSpring;
@@ -30,18 +36,25 @@ public class ReboundActivity extends BaseActivity implements SpringListener {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+        RecyclerBean bean = (RecyclerBean) getIntent().getSerializableExtra("RecyclerBean");
+        if (bean == null) {
+            id_rebound_title.setTitle(R.string.app_name);
+        }else {
+            id_rebound_title.setTitle(bean.getTitle());
+        }
+        id_rebound_title.removeBackground(R.drawable.ic_title_background);
+    }
+
+    @Override
+    protected void loadData() {
         mImageView = mRootView.findViewById(R.id.image_view);
         // Create the animation spring.
         mScaleSpring = mSpringSystem.createSpring();
     }
 
     @Override
-    protected void loadData() {
-
-    }
-
-    @Override
     protected void initListener() {
+        id_rebound_title.setLeftBackOneListener(R.mipmap.ic_title_back,this);
         // Add an OnTouchListener to the root view.
         mRootView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -103,5 +116,14 @@ public class ReboundActivity extends BaseActivity implements SpringListener {
     @Override
     public void onSpringEndStateChange(Spring spring) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.title_view_back_img:
+                onBackPressed();
+                break;
+        }
     }
 }

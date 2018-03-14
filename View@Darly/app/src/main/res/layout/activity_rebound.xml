@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:id="@+id/root_view"
-             android:orientation="vertical"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent">
-  <ImageView
-    android:id="@+id/image_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@mipmap/ic_stagger_a"
-    android:scaleType="centerCrop" />
-  <com.darly.darlyview.wedget.rebound.ui.SpringConfiguratorView
-    android:id="@+id/spring_configurator"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom" />
-</FrameLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/divider"
+    android:orientation="vertical">
+
+    <com.darly.dview.widget.header.TitleView
+        android:id="@+id/id_rebound_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_stagger_a" />
+
+        <com.darly.darlyview.wedget.rebound.ui.SpringConfiguratorView
+            android:id="@+id/spring_configurator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+    </FrameLayout>
+</LinearLayout>
