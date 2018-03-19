@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -123,18 +124,23 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
         private TextView title;
         private TextView desc;
         private ImageView icon;
+        private LinearLayout linearLayout;
 
         public ViewHocker(View itemView) {
             super(itemView);
             if (culmnNub>1){
+                linearLayout = (LinearLayout) itemView.findViewById(R.id.id_main_item_bg);
                 title = (TextView) itemView.findViewById(R.id.id_main_item_title);
                 desc = (TextView) itemView.findViewById(R.id.id_main_item_desc);
                 icon = (ImageView) itemView.findViewById(R.id.id_main_item_icon);
+                linearLayout.setBackgroundResource(R.color.text_color_dark);
                 icon.setLayoutParams(new RelativeLayout.LayoutParams(SCfg.getWidth()/culmnNub, SCfg.getWidth() / culmnNub));
             }else {
+                linearLayout = (LinearLayout) itemView.findViewById(R.id.id_main_item_bg);
                 title = (TextView) itemView.findViewById(R.id.id_main_item_title);
                 desc = (TextView) itemView.findViewById(R.id.id_main_item_desc);
                 icon = (ImageView) itemView.findViewById(R.id.id_main_item_icon);
+                linearLayout.setBackgroundResource(R.drawable.ic_main_flower);
                 icon.setLayoutParams(new RelativeLayout.LayoutParams(SCfg.getWidth(), SCfg.getWidth() / 2));
             }
         }
