@@ -1,21 +1,20 @@
 package com.darly.darlyview.base;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
 import com.darly.common.Common;
 import com.darly.darlyview.BuildConfig;
 import com.darly.dview.DView;
-import com.darly.dview.widget.camera.util.ImageLoaderUtil;
 
 /**项目启动加载初始化类
  * @author Darly/张宇辉/2018/3/5 8:47
  * @version 1.0/com.darly.darlyview.base
  */
-public class BaseApplication  extends Application {
+public class BaseApplication  extends MultiDexApplication {
 
     private static BaseApplication instance;
     @Override

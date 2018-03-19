@@ -6,12 +6,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.View.OnClickListener;
 
 import com.darly.darlyview.R;
 import com.darly.darlyview.base.BaseActivity;
 import com.darly.darlyview.common.CacheData;
+import com.darly.darlyview.games.LittleRestActivity;
 import com.darly.darlyview.ui.adapter.RecyclerBean;
 import com.darly.darlyview.ui.adapter.RecyclerViewAdapter;
+import com.darly.darlyview.ui.mover.ExampleActivity;
 import com.darly.darlyview.wedget.focusresize.FocusResizeScrollListener;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
@@ -25,7 +28,7 @@ import com.darly.dview.widget.header.TitleView;
  */
 
 @ContentBinder(R.layout.activity_main)
-public class MainActivity extends BaseActivity implements RecyclerViewAdapter.OnRecyclerItemClickListener{
+public class MainActivity extends BaseActivity implements RecyclerViewAdapter.OnRecyclerItemClickListener,OnClickListener{
 
     @ViewsBinder(R.id.id_main_title)
     TitleView id_main_title;
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity implements RecyclerViewAdapter.On
     @Override
     protected void initListener() {
         adapter.setOnRecyclerItemClickListener(this);
+        id_main_title.setRightViewRightTextOneListener("休息",this);
     }
 
     @Override
@@ -72,6 +76,15 @@ public class MainActivity extends BaseActivity implements RecyclerViewAdapter.On
             startActivity(intent);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.title_view_ok:
+                startActivity(new Intent(this, LittleRestActivity.class));
+                break;
         }
     }
 }

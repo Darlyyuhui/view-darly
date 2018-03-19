@@ -22,7 +22,7 @@ import com.darly.dview.widget.header.TitleView;
  * @version 1.0/com.darly.darlyview.ui.rebound
  */
 @ContentBinder(R.layout.activity_rebound)
-public class ReboundActivity extends BaseActivity implements SpringListener,View.OnClickListener {
+public class ReboundActivity extends BaseActivity implements SpringListener,View.OnClickListener,View.OnTouchListener {
     private final BaseSpringSystem mSpringSystem = SpringSystem.create();
 
     @ViewsBinder(R.id.id_rebound_title)
@@ -30,6 +30,7 @@ public class ReboundActivity extends BaseActivity implements SpringListener,View
 
     @ViewsBinder(R.id.root_view)
     private FrameLayout mRootView;
+
     private Spring mScaleSpring;
     private View mImageView;
 
@@ -43,6 +44,7 @@ public class ReboundActivity extends BaseActivity implements SpringListener,View
             id_rebound_title.setTitle(bean.getTitle());
         }
         id_rebound_title.removeBackground(R.drawable.ic_title_background);
+
     }
 
     @Override
@@ -55,24 +57,7 @@ public class ReboundActivity extends BaseActivity implements SpringListener,View
     @Override
     protected void initListener() {
         id_rebound_title.setLeftBackOneListener(R.mipmap.ic_title_back,this);
-        // Add an OnTouchListener to the root view.
-        mRootView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        // When pressed start solving the spring to 1.
-                        mScaleSpring.setEndValue(1);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        // When released start solving the spring to 0.
-                        mScaleSpring.setEndValue(0);
-                        break;
-                }
-                return true;
-            }
-        });
+        mRootView.setOnTouchListener(this);
     }
 
 
@@ -125,5 +110,21 @@ public class ReboundActivity extends BaseActivity implements SpringListener,View
                 onBackPressed();
                 break;
         }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                // When pressed start solving the spring to 1.
+                mScaleSpring.setEndValue(1);
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                // When released start solving the spring to 0.
+                mScaleSpring.setEndValue(0);
+                break;
+        }
+        return true;
     }
 }

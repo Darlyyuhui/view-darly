@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/text_brown"
+    android:orientation="vertical">
+
+    <com.darly.dview.widget.header.TitleView
+        android:id="@+id/id_little_rest_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/id_little_rest_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

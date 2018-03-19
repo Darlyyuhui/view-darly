@@ -120,4 +120,16 @@ public class CacheData {
         return data;
     }
 
+    public static List<RecyclerBean> getLittleRestData() {
+        List<RecyclerBean> data = new ArrayList<RecyclerBean>();
+        RecyclerBean tow2048 = new RecyclerBean();
+        tow2048.setId("0");
+        tow2048.setIcon(R.mipmap.ic_slidinguppanel);
+        tow2048.setTitle("2048（数字游戏）");
+        tow2048.setDesc("");
+        tow2048.setClazz("com.darly.darlyview.games.nub2048.Game2048Activity");
+        data.add(tow2048);
+        return data;
+    }
+
 }

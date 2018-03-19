@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.darly.common.ToastApp;
 import com.darly.darlyview.R;
 import com.darly.dview.common.SCfg;
 import com.darly.dview.widget.camera.util.ImageLoaderUtil;
@@ -25,13 +26,26 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
     private List<RecyclerBean> list;
     private OnRecyclerItemClickListener listener;
     private RecyclerView recyclerView;
+    private int culmnNub = 1;
+
 
 
     public CustomRecyclerAdapter(Context context, List<RecyclerBean> list) {
         this.context = context;
         this.list = list;
     }
-
+    /**
+     *  重构的方法，传入列数，可以直接构造GridView效果（正方形效果）
+     */
+    public CustomRecyclerAdapter(Context context, List<RecyclerBean> list,int culmnNub) {
+        this.context = context;
+        this.list = list;
+        if (culmnNub<1){
+            ToastApp.showToast("列数不能小于1");
+        }else {
+            this.culmnNub = culmnNub;
+        }
+    }
     public void setOnRecyclerItemClickListener(OnRecyclerItemClickListener listener) {
         this.listener = listener;
     }
@@ -112,10 +126,17 @@ public class CustomRecyclerAdapter extends RecyclerView.Adapter<CustomRecyclerAd
 
         public ViewHocker(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.id_main_item_title);
-            desc = (TextView) itemView.findViewById(R.id.id_main_item_desc);
-            icon = (ImageView) itemView.findViewById(R.id.id_main_item_icon);
-            icon.setLayoutParams(new RelativeLayout.LayoutParams(SCfg.getWidth(), SCfg.getWidth() / 2));
+            if (culmnNub>1){
+                title = (TextView) itemView.findViewById(R.id.id_main_item_title);
+                desc = (TextView) itemView.findViewById(R.id.id_main_item_desc);
+                icon = (ImageView) itemView.findViewById(R.id.id_main_item_icon);
+                icon.setLayoutParams(new RelativeLayout.LayoutParams(SCfg.getWidth()/culmnNub, SCfg.getWidth() / culmnNub));
+            }else {
+                title = (TextView) itemView.findViewById(R.id.id_main_item_title);
+                desc = (TextView) itemView.findViewById(R.id.id_main_item_desc);
+                icon = (ImageView) itemView.findViewById(R.id.id_main_item_icon);
+                icon.setLayoutParams(new RelativeLayout.LayoutParams(SCfg.getWidth(), SCfg.getWidth() / 2));
+            }
         }
     }
 
