@@ -1,1 +1,1 @@
-include ':app', ':Asseter'
+include ':app', ':Asseter', ':SrsLibrary'

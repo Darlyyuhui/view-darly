@@ -15,6 +15,7 @@ import com.darly.darlyview.common.CacheData;
 import com.darly.darlyview.ui.adapter.CustomRecyclerAdapter;
 import com.darly.darlyview.ui.adapter.CustomRecyclerAdapter.OnRecyclerItemClickListener;
 import com.darly.darlyview.ui.adapter.RecyclerBean;
+import com.darly.darlyview.video.VideoActivity;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
 import com.darly.dview.widget.header.TitleView;
@@ -50,7 +51,7 @@ public class LittleRestActivity extends BaseActivity implements OnClickListener,
     @Override
     protected void initListener() {
         id_little_rest_title.setLeftBackOneListener(R.mipmap.ic_title_back,this);
-        id_little_rest_title.setRightViewRightTextOneListener("设置",this);
+        id_little_rest_title.setRightViewRightTextOneListener("视频",this);
         adapter.setOnRecyclerItemClickListener(this);
     }
     @Override
@@ -60,7 +61,7 @@ public class LittleRestActivity extends BaseActivity implements OnClickListener,
                 onBackPressed();
                 break;
             case R.id.title_view_ok:
-                ToastApp.showToast("功能还未开放");
+                startActivity(new Intent(this, VideoActivity.class));
                 break;
         }
     }

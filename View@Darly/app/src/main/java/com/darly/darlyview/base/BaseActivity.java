@@ -34,6 +34,7 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
+        initParamer();
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = getWindow();
@@ -77,8 +78,12 @@ public abstract class BaseActivity extends FragmentActivity {
         loadData();
         initListener();
     }
+    /**在设置页面信息前，设置参数
+     * @author zhangyh2 BaseActivity.java TODO
+     */
+    protected  void initParamer(){
 
-
+    }
     /**
      * 下午2:36:27
      *
