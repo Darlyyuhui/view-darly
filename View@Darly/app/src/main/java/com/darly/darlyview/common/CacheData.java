@@ -93,6 +93,13 @@ public class CacheData {
         mover.setDesc("控件动画 https://github.com/daimajia/AndroidViewAnimations");
         mover.setClazz("com.darly.darlyview.ui.mover.MoverActivity");
         data.add(mover);
+        RecyclerBean magnet = new RecyclerBean();
+        magnet.setId("10");
+        magnet.setIcon(R.mipmap.ic_mover);
+        magnet.setTitle("magnet（磁鐵效果）");
+        magnet.setDesc("仿照磁鐵效果的ImageView");
+        magnet.setClazz("com.darly.darlyview.ui.magnet.MagnetActivity");
+        data.add(magnet);
         return data;
     }
 

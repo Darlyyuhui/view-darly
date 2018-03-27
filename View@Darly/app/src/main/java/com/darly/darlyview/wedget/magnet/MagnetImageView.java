@@ -21,20 +21,20 @@ import android.widget.ImageView;
  */
 
 public class MagnetImageView extends ImageView {
-
-    private boolean onAnimation = true;
-    private int rotateDegree = 10;
-
-    private boolean isFirst = true;
-    private float minScale = 0.95f;
-    private int vWidth;
-    private int vHeight;
-    private boolean isFinish = true,isActionMove=false,isScale=false;
+    private boolean onAnimation = true;// 是否处于动画状态
+    private int rotateDegree = 10;// 执行动画的时间
+    private boolean isFirst = true;// 标识是否为第一次绘制视图
+    private float minScale = 0.95f;// 最小缩放限度
+    private int vWidth;// 视图宽度
+    private int vHeight;// 视图高度
+    private boolean isFinish = true;// 标识是否为结束
+    private boolean isActionMove = false;// 标识是否在移动状态
+    private boolean isScale = false;// 标识是否为缩放状态
     private Camera camera;
 
-    boolean XbigY = false;
-    float RolateX = 0;
-    float RolateY = 0;
+    boolean XbigY = false;// 是否放大
+    float RolateX = 0;// 旋转的X轴点
+    float RolateY = 0;// 旋转的Y轴点
 
     OnViewClick onclick=null;
 
@@ -49,11 +49,6 @@ public class MagnetImageView extends ImageView {
 
     public MagnetImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        camera = new Camera();
-    }
-
-    public MagnetImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
         camera = new Camera();
     }
 
