@@ -41,16 +41,6 @@
             android:textColor="@color/bg_white"
             android:text="摄像头" />
 
-
-        <Button
-            android:id="@+id/swEnc"
-            android:layout_width="0dp"
-            android:background="@color/transparent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/bg_white"
-            android:layout_weight="1"
-            android:padding="@dimen/margin_padding10"
-            android:text="软编码" />
     </LinearLayout>
 
 </RelativeLayout>

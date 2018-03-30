@@ -44,11 +44,10 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
     private Button mPublishBtn;
     @ViewsBinder(R.id.swCam)
     private Button mCameraSwitchBtn;
-    @ViewsBinder(R.id.swEnc)
-    private Button mEncoderBtn;
 
     private SrsPublisher mPublisher;
-    private String rtmpUrl = "rtmp://192.168.88.128/srstest/tes";
+    private String rtmpUrl = "rtmp://193.169.100.110/live/tes";
+//    private String rtmpUrl = "rtmp://193.169.100.110:1755/srstest/tes";
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -63,9 +62,10 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
         //rtmp推流状态回调
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         //预览分辨率
-        mPublisher.setPreviewResolution(480, 320);
+        mPublisher.setPreviewResolution(800, 800);
         //推流分辨率
-        mPublisher.setOutputResolution(320, 480);
+        mPublisher.setOutputResolution(800, 800);
+        mPublisher.switchToSoftEncoder();
         //传输率
         mPublisher.setVideoHDMode();
         //开启美颜（其他滤镜效果在MagicFilterType中查看）
@@ -78,7 +78,6 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
     protected void initListener() {
         mPublishBtn.setOnClickListener(this);
         mCameraSwitchBtn.setOnClickListener(this);
-        mEncoderBtn.setOnClickListener(this);
     }
 
     @Override
@@ -87,39 +86,20 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
             //开始/停止推流
             case R.id.publish:
                 if (mPublishBtn.getText().toString().contentEquals("开始")) {
-                    if (TextUtils.isEmpty(rtmpUrl)) {
-                        ToastApp.showToast("地址不能为空！");
-                    }
                     mPublisher.startPublish(rtmpUrl);
                     mPublisher.startCamera();
-
-                    if (mEncoderBtn.getText().toString().contentEquals("软编码")) {
-                        ToastApp.showToast("当前使用硬编码！");
-                    } else {
-                        ToastApp.showToast("当前使用软编码！");
-                    }
-                    mPublishBtn.setText("停止");
-                    mEncoderBtn.setEnabled(false);
-                } else if (mPublishBtn.getText().toString().contentEquals("停止")) {
-                    mPublisher.stopPublish();
-                    mPublisher.stopRecord();
-                    mPublishBtn.setText("开始");
-                    mEncoderBtn.setEnabled(true);
+                    mPublishBtn.setText("暂停");
+                } else if (mPublishBtn.getText().toString().contentEquals("暂停")) {
+                    mPublisher.pauseRecord();
+                    mPublishBtn.setText("继续");
+                }else if (mPublishBtn.getText().toString().contentEquals("继续")){
+                    mPublisher.resumeRecord();
+                    mPublishBtn.setText("暂停");
                 }
                 break;
             //切换摄像头
             case R.id.swCam:
                 mPublisher.switchCameraFace((mPublisher.getCamraId() + 1) % Camera.getNumberOfCameras());
-                break;
-            //切换编码方式
-            case R.id.swEnc:
-                if (mEncoderBtn.getText().toString().contentEquals("软编码")) {
-                    mPublisher.switchToSoftEncoder();
-                    mEncoderBtn.setText("硬编码");
-                } else if (mEncoderBtn.getText().toString().contentEquals("硬编码")) {
-                    mPublisher.switchToHardEncoder();
-                    mEncoderBtn.setText("软编码");
-                }
                 break;
         }
     }
@@ -238,6 +218,7 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
     @Override
     public void onRtmpDisconnected() {
         ToastApp.showToast("未连接服务器");
+        mPublisher.startCamera();
     }
 
     @Override
