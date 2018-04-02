@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.darly.common.ToastApp;
 import com.darly.darlyview.R;
 import com.darly.darlyview.base.BaseActivity;
+import com.darly.darlyview.base.BaseApplication;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
 import com.github.faucamp.simplertmp.RtmpHandler;
@@ -46,8 +47,8 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
     private Button mCameraSwitchBtn;
 
     private SrsPublisher mPublisher;
-    private String rtmpUrl = "rtmp://193.169.100.110/live/tes";
-//    private String rtmpUrl = "rtmp://193.169.100.110:1755/srstest/tes";
+    public String rtmpUrl = "rtmp://193.169.100.110/live/"+ BaseApplication.getInstance().getDevId();
+//    public String rtmpUrl = "rtmp://193.169.100.110:5391/srstest/tes";
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -62,9 +63,9 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
         //rtmp推流状态回调
         mPublisher.setRtmpHandler(new RtmpHandler(this));
         //预览分辨率
-        mPublisher.setPreviewResolution(800, 800);
+        mPublisher.setPreviewResolution(1080, 1920);
         //推流分辨率
-        mPublisher.setOutputResolution(800, 800);
+        mPublisher.setOutputResolution(480, 480);
         mPublisher.switchToSoftEncoder();
         //传输率
         mPublisher.setVideoHDMode();
@@ -96,6 +97,7 @@ public class VideoActivity extends BaseActivity implements SrsEncodeHandler.SrsE
                     mPublisher.resumeRecord();
                     mPublishBtn.setText("暂停");
                 }
+                ToastApp.showToast("推送RTMP流的设备ID="+BaseApplication.getInstance().getDevId());
                 break;
             //切换摄像头
             case R.id.swCam:

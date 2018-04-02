@@ -51,7 +51,6 @@ public class LittleRestActivity extends BaseActivity implements OnClickListener,
     @Override
     protected void initListener() {
         id_little_rest_title.setLeftBackOneListener(R.mipmap.ic_title_back,this);
-        id_little_rest_title.setRightViewRightTextOneListener("视频",this);
         adapter.setOnRecyclerItemClickListener(this);
     }
     @Override

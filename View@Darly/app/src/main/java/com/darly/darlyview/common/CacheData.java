@@ -136,6 +136,20 @@ public class CacheData {
         tow2048.setDesc("数字游戏");
         tow2048.setClazz("com.darly.darlyview.games.nub2048.Game2048Activity");
         data.add(tow2048);
+        RecyclerBean record = new RecyclerBean();
+        record.setId("1");
+        record.setIcon(R.mipmap.ic_slidinguppanel);
+        record.setTitle("Record");
+        record.setDesc("上传RTMP流");
+        record.setClazz("com.darly.darlyview.video.VideoActivity");
+        data.add(record);
+        RecyclerBean play = new RecyclerBean();
+        play.setId("0");
+        play.setIcon(R.mipmap.ic_slidinguppanel);
+        play.setTitle("Play");
+        play.setDesc("播放RTMP流");
+        play.setClazz("com.darly.darlyview.video.PlayActivity");
+        data.add(play);
         return data;
     }
 
