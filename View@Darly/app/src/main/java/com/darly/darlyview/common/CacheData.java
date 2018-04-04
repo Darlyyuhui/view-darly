@@ -136,6 +136,13 @@ public class CacheData {
         tow2048.setDesc("数字游戏");
         tow2048.setClazz("com.darly.darlyview.games.nub2048.Game2048Activity");
         data.add(tow2048);
+        RecyclerBean tile = new RecyclerBean();
+        tile.setId("3");
+        tile.setIcon(R.mipmap.ic_slidinguppanel);
+        tile.setTitle("tile");
+        tile.setDesc("小游戏");
+        tile.setClazz("com.darly.darlyview.games.tile.TileActivity");
+        data.add(tile);
         RecyclerBean record = new RecyclerBean();
         record.setId("1");
         record.setIcon(R.mipmap.ic_slidinguppanel);

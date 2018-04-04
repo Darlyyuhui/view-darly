@@ -32,6 +32,17 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+
+    <uses-feature android:name="android.hardware.touchscreen" />
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="false"
+        android:resizeable="false"
+        android:anyDensity="true"
+        />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -70,9 +81,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".games.LittleRestActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".games.nub2048.Game2048Activity"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
         <activity android:name=".video.VideoActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".video.PlayActivity"
@@ -80,6 +88,12 @@
         <activity android:name=".ui.magnet.MagnetActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".games.nub2048.Game2048Activity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".games.tile.TileActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
     </application>
 
 </manifest>
