@@ -1,9 +1,9 @@
 package com.darly.darlyview.games.nub2048;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,7 +16,7 @@ import com.darly.darlyview.games.nub2048.view.Tile;
 import com.darly.dview.widget.header.TitleView;
 
 
-public class Game2048Activity extends ActionBarActivity implements OnClickListener {
+public class Game2048Activity extends Activity implements OnClickListener {
 
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";

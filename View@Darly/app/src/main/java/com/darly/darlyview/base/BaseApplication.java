@@ -3,11 +3,13 @@ package com.darly.darlyview.base;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
 import android.support.multidex.MultiDexApplication;
 import android.telephony.TelephonyManager;
 
 import com.darly.common.Common;
 import com.darly.darlyview.BuildConfig;
+import com.darly.darlyview.common.SystemLoginInfo;
 import com.darly.dview.DView;
 
 /**项目启动加载初始化类
@@ -24,6 +26,7 @@ public class BaseApplication  extends MultiDexApplication {
         DView.init().notifyInit(BuildConfig.DEBUG, this);//初始化自定义控件集合
         Common.init().init(this, "darlyview_share");//初始化工具类中的缓存集合
         Common.init().initDlog(BuildConfig.DEBUG, "View");//初始化工具类中的日志
+        SystemLoginInfo.init(this);
     }
 
 

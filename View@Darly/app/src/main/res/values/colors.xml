@@ -45,4 +45,11 @@
     <color name="text_black">#776e65</color>
     <color name="text_brown">#d6cdc4</color>
     <color name="background">#faf8ef</color>
+
+
+    <!--login-->
+    <color name="white">#FFFFFF</color>
+    <color name="login_edit_text">#2cca8d</color>
+    <color name="landscape_background">#CCCCCC</color>
+    <color name="golden_bananar">#E3CF57</color>
 </resources>

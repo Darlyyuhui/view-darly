@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.darly.darlyview.wedget.grav.GravView
+        android:id="@+id/id_login_grav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:colorGenerator="com.darly.darlyview.wedget.grav.generator.paint.ArrayColorGenerator"
+        app:array_colors="@array/bubble"
+        app:pointGenerator="com.darly.darlyview.wedget.grav.generator.point.RegularPointGenerator"
+        app:regular_cell_size="300"
+        app:regular_variance="200"
+        app:gravGenerator="com.darly.darlyview.wedget.grav.generator.grav.BallGenerator"
+        app:ball_from_size="10dp"
+        app:ball_to_size="20dp"
+        app:animationGenerators="@array/BubbleAnimations"
+        app:side_to_side_min_duration="10000"
+        app:side_to_side_max_duration="10000"
+        app:side_to_side_direction="leftToRight"
+        app:shake_direction="vertical"
+        app:shake_min_duration="10000"
+        app:shake_max_duration="20000"
+        app:shake_variance="500dp"
+        />
+
+
+
+    <LinearLayout
+        android:id="@+id/id_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="14dip"
+        android:paddingRight="14dip">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:visibility="invisible"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.darly.dview.widget.clearedit.ClearEditText
+                android:id="@+id/id_login_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/transparent"
+                android:drawableLeft="@drawable/btn_selecter_user"
+                android:drawablePadding="@dimen/margin_padding15"
+                android:maxLength="20"
+                android:padding="@dimen/margin_padding10"
+                android:text="admin"
+                android:textColor="@color/white"
+                android:textColorHint="@color/landscape_background"
+                android:textSize="@dimen/textSize20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_padding10"
+                android:layout_marginRight="@dimen/margin_padding10"
+                android:layout_marginTop="-5dp"
+                android:background="@color/index_line" />
+
+            <com.darly.dview.widget.clearedit.ClearEditText
+                android:id="@+id/id_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@color/transparent"
+                android:drawableLeft="@drawable/btn_selecter_pwd"
+                android:drawablePadding="@dimen/margin_padding15"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:padding="@dimen/margin_padding10"
+                android:text="admin"
+                android:textColor="@color/white"
+                android:textColorHint="@color/landscape_background"
+                android:textSize="@dimen/textSize20" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_padding10"
+                android:layout_marginRight="@dimen/margin_padding10"
+                android:layout_marginTop="-5dp"
+                android:background="@color/index_line" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_padding10"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/margin_padding20">
+
+                <CheckBox
+                    android:id="@+id/id_login_guide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/checkbox_select"
+                    android:padding="@dimen/margin_padding10"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/id_login_set"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="@dimen/margin_padding10"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
+            </TableRow>
+
+            <com.darly.dview.widget.button.DSubButton
+                android:id="@+id/id_login_btn"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/view_height40"
+                android:layout_marginTop="@dimen/margin_padding5" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:paddingBottom="@dimen/margin_padding20"
+            android:text="Copyright © 西安翔迅科技有限责任公司"
+            android:textColor="@color/color_eeeeee"
+            android:textSize="@dimen/textSize20" />
+    </LinearLayout>
+
+
+</RelativeLayout>

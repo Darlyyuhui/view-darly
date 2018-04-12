@@ -42,9 +42,10 @@ public class GravSampleFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
   }
 
+
   @Override
-  public void onPause() {
-    super.onPause();
+  public void onDestroy() {
+    super.onDestroy();
     gravView.stop();
   }
 }

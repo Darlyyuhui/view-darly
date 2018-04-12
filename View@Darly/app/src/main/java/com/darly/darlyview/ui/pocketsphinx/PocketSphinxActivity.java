@@ -1,6 +1,7 @@
 package com.darly.darlyview.ui.pocketsphinx;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,10 +10,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.darly.common.DLog;
 import com.darly.darlyview.R;
 import com.darly.darlyview.base.BaseActivity;
+import com.darly.darlyview.common.CacheData;
 import com.darly.darlyview.ui.adapter.RecyclerBean;
 import com.darly.dview.framework.ContentBinder;
 import com.darly.dview.framework.ViewsBinder;
@@ -21,13 +24,17 @@ import com.darly.dview.widget.header.TitleView;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import edu.cmu.pocketsphinx.Assets;
 import edu.cmu.pocketsphinx.Hypothesis;
 import edu.cmu.pocketsphinx.RecognitionListener;
 import edu.cmu.pocketsphinx.SpeechRecognizer;
 import edu.cmu.pocketsphinx.SpeechRecognizerSetup;
+
+import static android.widget.Toast.makeText;
 
 /**
  * @author Darly/张宇辉/2018/3/9 9:07
@@ -48,15 +55,14 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
     private static final String PHONE_SEARCH = "phones";
     private static final String MENU_SEARCH = "menu";
 
+
     /* Keyword we are looking for to activate menu */
-    private static final String KEYPHRASE = "computer";
+    private static final String KEYPHRASE = "start";
 
     /* Used to handle permission request */
     private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
-
     private SpeechRecognizer recognizer;
     private HashMap<String, Integer> captions;
-
     @Override
     protected void initView(Bundle savedInstanceState) {
         RecyclerBean bean = (RecyclerBean) getIntent().getSerializableExtra("RecyclerBean");
@@ -66,6 +72,11 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
             id_pocketsphinx_title.setTitle(bean.getTitle());
         }
         id_pocketsphinx_title.removeBackground(R.drawable.ic_title_background);
+    }
+
+    @Override
+    protected void loadData() {
+
         // Prepare the data for UI
         captions = new HashMap<>();
         captions.put(KWS_SEARCH, R.string.kws_caption);
@@ -73,13 +84,6 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
         captions.put(DIGITS_SEARCH, R.string.digits_caption);
         captions.put(PHONE_SEARCH, R.string.phone_caption);
         captions.put(FORECAST_SEARCH, R.string.forecast_caption);
-
-        caption_text.setText("Preparing the recognizer");
-
-    }
-
-    @Override
-    protected void loadData() {
         // Check if user has given permission to record audio
         int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
@@ -151,10 +155,54 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
         }
     }
 
+    /**
+     * In partial result we get quick updates about current hypothesis. In
+     * keyword spotting mode we can react here, in other modes we need to wait
+     * for final result in onResult.
+     */
+    @Override
+    public void onPartialResult(Hypothesis hypothesis) {
+        if (hypothesis == null)
+            return;
+
+        String text = hypothesis.getHypstr();
+        if (text.equals(KEYPHRASE))
+            switchSearch(MENU_SEARCH);
+        else if (text.equals(DIGITS_SEARCH))
+            endact(CacheData.getRecyclerBeanData().get(0));
+        else if (text.equals(PHONE_SEARCH))
+            endact(CacheData.getRecyclerBeanData().get(1));
+        else if (text.equals(FORECAST_SEARCH))
+            endact(CacheData.getRecyclerBeanData().get(2));
+        else
+            ((TextView) findViewById(R.id.result_text)).setText(text);
+    }
+    private void endact(RecyclerBean data){
+        try {
+            finish();
+            Intent intent = new Intent();
+            intent.setClass(this,Class.forName(data.getClazz()));
+            intent.putExtra("RecyclerBean",data);
+            startActivity(intent);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * This callback is called when we stop the recognizer.
+     */
+    @Override
+    public void onResult(Hypothesis hypothesis) {
+        ((TextView) findViewById(R.id.result_text)).setText("");
+    }
+
     @Override
     public void onBeginningOfSpeech() {
     }
 
+    /**
+     * We stop recognizer here to get a final result
+     */
     @Override
     public void onEndOfSpeech() {
         if (!recognizer.getSearchName().equals(KWS_SEARCH))
@@ -162,44 +210,14 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
-    public void onPartialResult(Hypothesis hypothesis) {
-        if (hypothesis == null) {
-            return;
-        }
-        DLog.i("分析。。。"+hypothesis);
-        String text = hypothesis.getHypstr();
-        if (text.equals(KEYPHRASE))
-            switchSearch(MENU_SEARCH);
-        else if (text.equals(DIGITS_SEARCH))
-            switchSearch(DIGITS_SEARCH);
-        else if (text.equals(PHONE_SEARCH))
-            switchSearch(PHONE_SEARCH);
-        else if (text.equals(FORECAST_SEARCH))
-            switchSearch(FORECAST_SEARCH);
-        else
-            ((TextView) findViewById(R.id.result_text)).setText(text);
-    }
-
-    @Override
-    public void onResult(Hypothesis hypothesis) {
-        ((TextView) findViewById(R.id.result_text)).setText("");
-        if (hypothesis != null) {
-            DLog.i("结果。。。"+hypothesis);
-            String text = hypothesis.getHypstr();
-            DLog.i(text);
-        }
-    }
-
-    @Override
-    public void onError(Exception e) {
-        caption_text.setText(e.getMessage());
+    public void onError(Exception error) {
+        caption_text.setText(error.getMessage());
     }
 
     @Override
     public void onTimeout() {
         switchSearch(KWS_SEARCH);
     }
-
 
     @Override
     public void onDestroy() {
@@ -223,7 +241,7 @@ public class PocketSphinxActivity extends BaseActivity implements View.OnClickLi
             recognizer.startListening(searchName, 10000);
 
         String caption = getResources().getString(captions.get(searchName));
-        ((TextView) findViewById(R.id.caption_text)).setText(caption);
+        caption_text.setText(caption);
     }
 
     private void setupRecognizer(File assetsDir) throws IOException {

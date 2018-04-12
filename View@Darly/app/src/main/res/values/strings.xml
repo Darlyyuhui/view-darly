@@ -5,7 +5,7 @@
     <string name="hello"><![CDATA[<b>这是底部展示活动标签，点击可以打开底部</b>]]></string>
 
 
-    <string name="kws_caption">To start demonstration say \"computer\".</string>
+    <string name="kws_caption">To start demonstration say \"start\".</string>
     <string name="menu_caption">Say \"digits\", \"forecast\" or \"phones\" to choose the grammar, language model or phonetic decoder example.</string>
     <string name="digits_caption">To try recognition of digits: say something like \"one two three four five\".</string>
     <string name="forecast_caption">To try recognition of a weather forecast like \"sunny spells on Wednesday\".</string>
@@ -217,5 +217,9 @@ C68.5809,277.075,273.832,71.8233,527.023,71.8233 Z
   <string name="reset_dialog_message">Are you sure you wish to reset the game?</string>
 
   <string name="buffering">loading……</string>
-
+  <string name="loginoffline">未连接网络，请检查网络或以离线方式登录！</string>
+  <string name="netnotavailable">未连接网络，请检查网络设置！</string>
+  <string name="loginset">系统设置</string>
+  <string name="loginguide">设置向导</string>
+  <string name="loginpass">记住密码</string>
 </resources>
