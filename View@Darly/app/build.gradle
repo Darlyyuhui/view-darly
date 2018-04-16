@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.nineoldandroids:library:2.4.0'
+    
     implementation(name: 'pocketsphinx-android-5prealpha-release', ext: 'aar')
     implementation project(':Asseter')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
